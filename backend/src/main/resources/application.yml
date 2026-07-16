@@ -1,0 +1,54 @@
+server:
+  port: 8080
+  error:
+    include-message: always
+
+spring:
+  application:
+    name: student-management-system
+
+  datasource:
+    url: jdbc:h2:file:./data/sms_db;MODE=MySQL;DB_CLOSE_DELAY=-1;DATABASE_TO_UPPER=FALSE
+    username: sa
+    password: 
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+  sql:
+    init:
+      mode: always
+      schema-locations: []
+      data-locations: classpath:data.sql
+
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 10MB
+
+app:
+  jwt:
+    # 256-bit+ secret. Override via JWT_SECRET env var in real deployments — never ship this default.
+    secret: ${JWT_SECRET:c2Ftc2xlLXNlY3JldC1rZXktZm9yLWp3dC1zaWduaW5nLWRvLW5vdC11c2UtaW4tcHJvZHVjdGlvbg==}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000} # 24 hours
+  cors:
+    allowed-origins: ${CORS_ORIGINS:http://localhost:5173}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+logging:
+  level:
+    com.sms: DEBUG
+    org.springframework.security: INFO

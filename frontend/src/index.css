@@ -1,0 +1,23 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-body bg-paper text-ink dark:bg-slate-925 dark:text-paper transition-colors duration-300;
+  }
+
+  ::selection {
+    @apply bg-amber-100 text-ink;
+  }
+
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-amber-500;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/70 dark:bg-slate-850/60 backdrop-blur-xl border border-white/40 dark:border-white/5;
+  }
+}
