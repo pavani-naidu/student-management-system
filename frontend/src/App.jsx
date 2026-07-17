@@ -6,31 +6,26 @@ import Register from './pages/Register.jsx';
 import ForgotPassword from './pages/ForgotPassword.jsx';
 import Dashboard from './pages/Dashboard.jsx';
 import Students from './pages/Students.jsx';
+import Departments from './pages/Departments.jsx';
+import Courses from './pages/Courses.jsx';
+import Teachers from './pages/Teachers.jsx';
+import Attendance from './pages/Attendance.jsx';
+import MyAttendance from './pages/MyAttendance.jsx';
+import Examinations from './pages/Examinations.jsx';
+import Marks from './pages/Marks.jsx';
+import MyMarks from './pages/MyMarks.jsx';
+import Fees from './pages/Fees.jsx';
+import MyFees from './pages/MyFees.jsx';
+import Library from './pages/Library.jsx';
+import Hostel from './pages/Hostel.jsx';
+import Transport from './pages/Transport.jsx';
+import Timetable from './pages/Timetable.jsx';
+import Notices from './pages/Notices.jsx';
+import Events from './pages/Events.jsx';
+import Settings from './pages/Settings.jsx';
 import PlaceholderPage from './components/PlaceholderPage.jsx';
 import DashboardLayout from './layouts/DashboardLayout.jsx';
 import ProtectedRoute from './routes/ProtectedRoute.jsx';
-
-// Modules not yet built out — routed to a placeholder so navigation/sidebar links
-// all resolve, ready to be swapped for real pages one at a time.
-const STUB_MODULES = [
-  { path: 'teachers', title: 'Teacher Management' },
-  { path: 'courses', title: 'Course Management' },
-  { path: 'departments', title: 'Department Management' },
-  { path: 'attendance', title: 'Attendance Management' },
-  { path: 'marks', title: 'Marks Management' },
-  { path: 'fees', title: 'Fee Management' },
-  { path: 'library', title: 'Library Management' },
-  { path: 'hostel', title: 'Hostel Management' },
-  { path: 'transport', title: 'Transport Management' },
-  { path: 'examinations', title: 'Examination Management' },
-  { path: 'timetable', title: 'Timetable' },
-  { path: 'notices', title: 'Notice Board' },
-  { path: 'events', title: 'Events' },
-  { path: 'settings', title: 'Settings' },
-  { path: 'my-attendance', title: 'My Attendance' },
-  { path: 'my-marks', title: 'My Marks' },
-  { path: 'my-fees', title: 'My Fees' },
-];
 
 function App() {
   return (
@@ -58,9 +53,142 @@ function App() {
               </ProtectedRoute>
             }
           />
-          {STUB_MODULES.map(({ path, title }) => (
-            <Route key={path} path={`/${path}`} element={<PlaceholderPage title={title} />} />
-          ))}
+          <Route
+            path="/departments"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN']}>
+                <Departments />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/courses"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN']}>
+                <Courses />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/teachers"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN', 'TEACHER']}>
+                <Teachers />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/attendance"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN', 'TEACHER']}>
+                <Attendance />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/my-attendance"
+            element={
+              <ProtectedRoute allowedRoles={['STUDENT']}>
+                <MyAttendance />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/examinations"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN', 'TEACHER']}>
+                <Examinations />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/marks"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN', 'TEACHER']}>
+                <Marks />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/my-marks"
+            element={
+              <ProtectedRoute allowedRoles={['STUDENT']}>
+                <MyMarks />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/fees"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN', 'TEACHER']}>
+                <Fees />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/my-fees"
+            element={
+              <ProtectedRoute allowedRoles={['STUDENT']}>
+                <MyFees />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/library"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN', 'TEACHER', 'STUDENT']}>
+                <Library />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/hostel"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN', 'STUDENT']}>
+                <Hostel />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/transport"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN', 'STUDENT']}>
+                <Transport />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/timetable"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN', 'TEACHER', 'STUDENT']}>
+                <Timetable />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/notices"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN', 'TEACHER', 'STUDENT']}>
+                <Notices />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/events"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN', 'TEACHER', 'STUDENT']}>
+                <Events />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/settings"
+            element={
+              <ProtectedRoute allowedRoles={['ADMIN', 'TEACHER', 'STUDENT']}>
+                <Settings />
+              </ProtectedRoute>
+            }
+          />
         </Route>
       </Routes>
     </>
@@ -68,3 +196,4 @@ function App() {
 }
 
 export default App;
+

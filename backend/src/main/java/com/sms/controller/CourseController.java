@@ -42,6 +42,21 @@ public class CourseController {
         return ResponseEntity.ok(ApiResponse.success("Course created", courseRepository.save(course)));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<ApiResponse<Course>> update(@PathVariable Long id, @RequestBody CourseRequest request) {
+        Course existing = courseRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Course not found with id: " + id));
+        Department department = departmentRepository.findById(request.departmentId())
+                .orElseThrow(() -> new ResourceNotFoundException("Department not found with id: " + request.departmentId()));
+
+        existing.setName(request.name());
+        existing.setCode(request.code());
+        existing.setDurationYears(request.durationYears());
+        existing.setDepartment(department);
+
+        return ResponseEntity.ok(ApiResponse.success("Course updated", courseRepository.save(existing)));
+    }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<ApiResponse<Void>> delete(@PathVariable Long id) {
         if (!courseRepository.existsById(id)) {

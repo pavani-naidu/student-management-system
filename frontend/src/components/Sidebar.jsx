@@ -32,6 +32,9 @@ const TEACHER_LINKS = [
   { to: '/marks', label: 'Marks', icon: FileSpreadsheet },
   { to: '/timetable', label: 'Timetable', icon: CalendarDays },
   { to: '/notices', label: 'Notices', icon: ScrollText },
+  { to: '/library', label: 'Library', icon: Library },
+  { to: '/events', label: 'Events', icon: Clock },
+  { to: '/settings', label: 'Settings', icon: Settings },
 ];
 
 const STUDENT_LINKS = [
@@ -40,7 +43,12 @@ const STUDENT_LINKS = [
   { to: '/my-marks', label: 'Marks', icon: FileSpreadsheet },
   { to: '/timetable', label: 'Timetable', icon: CalendarDays },
   { to: '/my-fees', label: 'Fees', icon: Wallet },
+  { to: '/library', label: 'Library', icon: Library },
+  { to: '/hostel', label: 'Hostel', icon: Home },
+  { to: '/transport', label: 'Transport', icon: Bus },
   { to: '/notices', label: 'Notices', icon: ScrollText },
+  { to: '/events', label: 'Events', icon: Clock },
+  { to: '/settings', label: 'Settings', icon: Settings },
 ];
 
 export default function Sidebar({ open, onClose }) {

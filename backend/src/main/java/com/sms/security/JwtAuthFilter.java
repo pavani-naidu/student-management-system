@@ -26,10 +26,14 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     // Paths that never need JWT parsing — avoids wasted work and noisy errors on public endpoints
     private static final List<AntPathRequestMatcher> PUBLIC_MATCHERS = List.of(
-            new AntPathRequestMatcher("/api/auth/**"),
+            new AntPathRequestMatcher("/"),
+            new AntPathRequestMatcher("/swagger-ui.html"),
+            new AntPathRequestMatcher("/api/auth/login"),
+            new AntPathRequestMatcher("/api/auth/register"),
             new AntPathRequestMatcher("/swagger-ui/**"),
             new AntPathRequestMatcher("/v3/api-docs/**")
     );
+
 
     @Override
     protected void doFilterInternal(@NonNull HttpServletRequest request,

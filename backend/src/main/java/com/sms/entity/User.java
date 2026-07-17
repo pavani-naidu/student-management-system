@@ -33,6 +33,10 @@ public class User {
     @Column(nullable = false)
     private Role role;
 
+    private String mobileNumber;
+
+    private String address;
+
     @Column(nullable = false)
     @Builder.Default
     private boolean enabled = true;
@@ -45,3 +49,4 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 }
+
